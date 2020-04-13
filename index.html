@@ -7,7 +7,7 @@ use-site-title: true
 
 <div class="posts-list">
   {% for post in paginator.posts %}
-  <article class="post-preview">
+  <!-- <article class="post-preview">
     <a href="{{ post.url | relative_url }}">
 	  <h2 class="post-title">{{ post.title }}</h2>
 
@@ -52,7 +52,45 @@ use-site-title: true
     </div>
     {% endif %}
 
-   </article>
+   </article> -->
+	      <article>
+        <div class="card rounded">
+          {% if post.image %}
+          <div class="outer-div card-img-top">
+            <a href="{{ post.url | relative_url }}">
+              <div class="inner-div" style="background-image: url({{ post.image | relative_url }})" ></div>
+            </a>
+          </div>
+          {% endif %}
+          <div class="card-body">
+            <p class="card-text">
+              <small class="text-muted">
+                {{ post.date | date: "%-d %B %Y" }}
+                <span> - {{ post.time }} MIN READ </span>
+              </small>
+            </p>
+            <a href="{{ post.url | relative_url }}">
+              <h1 class="card-title">{{ post.title }}</h1>
+              {% if post.subtitle %}
+                <h5>{{ post.subtitle }}</h5>
+              {% endif %}
+            </a>
+            <p class="card-text">
+              {{
+                post.excerpt
+                  | strip_html
+                  | xml_escape
+              }}
+              {% assign excerpt_word_count = post.excerpt | number_of_words %} 
+              {% if post.content != post.excerpt or excerpt_word_count > site.excerpt_length %}
+                <a href="{{ post.url | relative_url }}" class="post-read-more">
+                  Read&nbsp;More
+                </a>
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </article>
   {% endfor %}
 </div>
 
