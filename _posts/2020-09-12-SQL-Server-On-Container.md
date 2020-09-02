@@ -9,9 +9,10 @@ tags: [AKS, K8s, SQL Server, Container]
 comments: true
 time: 3
 ---
-Let’s go through some facts before we drill down to the concrete stuff, Containers are ephemeral and stateless in nature which raises already a couple of question marks already around the topic of having SQL server running on containers within your Kubernetes cluster, Cause the fact is when we think about SQL servers then data durability comes in mind, constant network availability/access and the state is critical.. that’s how Kubernetes and in our case AKS comes in the picture where we will separate the compute plane (stateless) from the data planes by providing persistent storage, consistent DNS and High Availability.
+Let’s go through some facts before we drill down to the concrete stuff, Containers are ephemeral and stateless in nature which raises already a couple of question marks around the topic of having SQL Server running on containers within your Kubernetes cluster, Cause the fact is when we think about SQL Servers then data durability comes in mind, constant network availability/access and the state is critical.. 
+that’s how Kubernetes and in our case AKS comes in the picture where we will separate the compute plane (stateless) from the data planes by providing persistent storage, consistent DNS and High Availability.
 
-## Why should you consider running SQL server on containers?
+## Why should you consider running SQL Server on containers?
 
 - **Ease of use** in the development and test environment without the need for spinning up VMs, managing them go into endless version conflicts etc etc etc..
 - **Standardization** that’s the word that your management board would like to hear but it also make sense in this case, containers are becoming more and more the way to do thing in software development so if your apps and services are running in containers then DBs should follow along.
@@ -32,7 +33,7 @@ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=V3ryStr0ngPa55!" `
 ```
 
 Notice that we mounted a volume where the data will be persisted and that’s exactly same behaviour that we will map with AKS and Azure Disks instead of Docker desktop and the Docker host directory.
-The steps and the concept is described in details in the official documentation but again for the sake of simplicity here I am going to speed through the essentials
+The steps and the concept is described in details in the [official documentation](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15) but again for the sake of simplicity here I am going to speed through the essentials
 
 # Create the secret
 ```shell
