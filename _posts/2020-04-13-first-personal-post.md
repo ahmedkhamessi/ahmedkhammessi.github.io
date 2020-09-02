@@ -5,7 +5,7 @@ bigimg:
   - "/img/sqlserver.jpg": "https://unsplash.com/photos/M5tzZtFCOfs"
 image: https://ahmedkhamessi.com/img/sqlserver.jpg
 share-img: https://ahmedkhamessi.com/img/sqlserver.jpg
-tags: [General]
+tags: [AKS, K8s, SQL Server, Container]
 comments: true
 time: 3
 ---
