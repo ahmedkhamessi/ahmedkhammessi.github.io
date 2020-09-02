@@ -15,7 +15,7 @@ that’s how Kubernetes and in our case AKS comes in the picture where we will s
 ## Why should you consider running SQL Server on containers?
 
 - **Ease of use** in the development and test environment without the need for spinning up VMs, managing them go into endless version conflicts etc etc etc..
-- **Standardization** that’s the word that your management board would like to hear but it also make sense in this case, containers are becoming more and more the way to do thing in software development so if your apps and services are running in containers then DBs should follow along.
+- **Standardization** that’s the word that your management board would like to hear but it also make sense in this case, containers are becoming more and more the way to do things in software development so if your apps and services are running in containers then DBs should follow along.
 - A huge gain on the **Portability** aspect among different cloud vendors and even on premises systems.
 - Last but not least is the great **DevOps** integration.
 
@@ -32,7 +32,7 @@ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=rWpzZx~YL+7mEw<z" `
    -d mcr.microsoft.com/mssql/server
 ```
 
-Notice that we mounted a volume where the data will be persisted and that’s exactly same behaviour that we will map with AKS and Azure Disks instead of Docker desktop and the Docker host directory.
+Notice that we mounted a volume where the data will be persisted and that’s exactly the same behaviour that we will map with AKS and Azure Disks instead of Docker desktop and the Docker host directory.
 The steps and the concept is described in details in the [official documentation](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15) but again for the sake of simplicity here I am going to speed through the essentials
 
 # Create the secret
@@ -43,7 +43,7 @@ kubectl create secret generic mssql --from-literal=SA_PASSWORD="rWpzZx~YL+7mEw<z
 
 # Create the storage
 
-The idea is to provide a way for Admins to describe the type of storage that the platform will offer and then via a PersistentVolumeClaim will claim the storage for a specific workload.
+The idea is to provide a way for administrators to describe the type of storage that the platform will offer and then via a PersistentVolumeClaim will claim the storage for a specific workload.
 
 ```yaml
 kind: StorageClass
@@ -71,7 +71,7 @@ spec:
 
 # Finally create the deplyoment and expose it!
 
-the deployment will specify the number of replicas and via a ReplicationSet will ensure High Availability and self healing of the pods.Furthermore, The pod template we will define the different environment variables that we’ve seen in the simple local docker version command and mount the respective volume.
+the deployment will specify the number of replicas and via a ReplicationSet will ensure High Availability and self healing of the pods.Furthermore, We will define the different environment variables that we’ve seen in the simple local docker version command and mount the respective volume in the pod template.
 
 ```yaml
 apiVersion: apps/v1
@@ -130,4 +130,4 @@ The secret that has been created will expose our workload/Sql Server in this cas
 
 # Coming up
 
-The failover mecanisme for now is relying on tke Kubernetes controllers such as Deployments and ReplicaSets which are  not application aware components therefor Microsoft is working on SQL Always On Availability Groups in AKS (in Preview).
+The failover mechanism for now is relying on the Kubernetes controllers such as Deployments and ReplicaSets which are  not application aware components therefor Microsoft is working on SQL Always On Availability Groups in AKS (in Preview).
