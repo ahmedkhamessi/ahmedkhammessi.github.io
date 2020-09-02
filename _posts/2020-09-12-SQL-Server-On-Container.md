@@ -21,7 +21,7 @@ that’s how Kubernetes and in our case AKS comes in the picture where we will s
 
 ## How to deploy SQL Server in Kubernetes
 
-Before jumping over the AKS and setting up SQL Server pods and service let's check out what is actually needed to run it as a container just locally. By checking out https://hub.docker.com/_/microsoft-mssql-server you can see the different images and the required options to run Sql Server on containers, it as simple as:
+Before jumping over the AKS and setting up SQL Server pods and service let's check out what is actually needed to run it as a container just locally. By checking out [Docker Hub](https://hub.docker.com/_/microsoft-mssql-server) you can see the different images and the required options to run Sql Server on containers, it as simple as:
 
 ```shell
 docker pull mcr.microsoft.com/mssql/server
