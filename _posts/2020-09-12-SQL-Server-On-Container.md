@@ -26,7 +26,7 @@ Before jumping over the AKS and setting up SQL Server pods and service let's che
 ```shell
 docker pull mcr.microsoft.com/mssql/server
 
-docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=V3ryStr0ngPa55!" `
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=rWpzZx~YL+7mEw<z" `
    -p 1433:1433 --name mySqlContainer `
    -v sqldata1:/var/opt/mssql `
    -d mcr.microsoft.com/mssql/server
