@@ -33,7 +33,8 @@ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=rWpzZx~YL+7mEw<z" `
 ```
 
 Notice that we mounted a volume where the data will be persisted and that’s exactly the same behaviour that we will map with AKS and Azure Disks instead of Docker desktop and the Docker host directory.
-The steps and the concept is described in details in the [official documentation](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15) but again for the sake of simplicity here I am going to speed through the essentials
+
+The steps and the concept is described in details in the [official documentation](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15) but again for the sake of simplicity let's speed through the essentials.
 
 # Create the secret
 
@@ -43,7 +44,7 @@ kubectl create secret generic mssql --from-literal=SA_PASSWORD="rWpzZx~YL+7mEw<z
 
 # Create the storage
 
-The idea is to provide a way for administrators to describe the type of storage that the platform will offer and then via a PersistentVolumeClaim will claim the storage for a specific workload.
+The idea behind Storage Classes is to provide a way for administrators to describe the type of storage that the platform will offer.
 
 ```yaml
 kind: StorageClass
@@ -71,7 +72,7 @@ spec:
 
 # Finally create the deplyoment and expose it!
 
-the deployment will specify the number of replicas and via a ReplicationSet will ensure High Availability and self healing of the pods.Furthermore, We will define the different environment variables that we’ve seen in the simple local docker version command and mount the respective volume in the pod template.
+The deployment will specify the number of replicas and via a ReplicationSet will ensure High Availability and self healing of the workload. Furthermore, We will define the different environment variables, that we’ve seen in the simple local docker version command, and mount the respective volume in the pod template.
 
 ```yaml
 apiVersion: apps/v1
