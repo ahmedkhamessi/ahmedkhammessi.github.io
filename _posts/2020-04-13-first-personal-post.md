@@ -2,7 +2,7 @@
 layout: post
 title: SQL Server on Containers and AKS
 bigimg:
-  - "/img/sqlserver.jpg": "https://unsplash.com/photos/Q1p7bh3SHj8"
+  - "/img/sqlserver.jpg": "https://unsplash.com/photos/M5tzZtFCOfs"
 image: https://ahmedkhamessi.com/img/sqlserver.jpg
 share-img: https://ahmedkhamessi.com/img/sqlserver.jpg
 tags: [General]
@@ -13,10 +13,10 @@ Let’s go through some facts before we drill down to the concrete stuff, Contai
 
 ## Why should you consider running SQL server on containers?
 
-- [Ease of use] in the development and test environment without the need for spinning up VMs, managing them go into endless version conflicts etc etc etc..
-- [Standardization] that’s the word that your management board would like to hear but it also make sense in this case, containers are becoming more and more the way to do thing in software development so if your apps and services are running in containers then DBs should follow along.
-- A huge gain on the [Portability] aspect among different cloud vendors and even on premises systems.
-- Last but not least is the great [DevOps] integration.
+- **Ease of use** in the development and test environment without the need for spinning up VMs, managing them go into endless version conflicts etc etc etc..
+- **Standardization** that’s the word that your management board would like to hear but it also make sense in this case, containers are becoming more and more the way to do thing in software development so if your apps and services are running in containers then DBs should follow along.
+- A huge gain on the **Portability** aspect among different cloud vendors and even on premises systems.
+- Last but not least is the great **DevOps** integration.
 
 ## How to deploy SQL Server in Kubernetes
 
@@ -92,4 +92,40 @@ spec:
         image: mcr.microsoft.com/mssql/server:2017-latest
         ports:
         - containerPort: 1433
+        env:
+        - name: MSSQL_PID
+          value: "Developer"
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mssql
+              key: SA_PASSWORD 
+        volumeMounts:
+        - name: mssqldb
+          mountPath: /var/opt/mssql
+      volumes:
+      - name: mssqldb
+        persistentVolumeClaim:
+          claimName: mssql-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mssql-deployment
+spec:
+  selector:
+    app: mssql
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433
+  type: LoadBalancer
 ```
+
+The secret that has been created will expose our workload/Sql Server in this case to the outside word via a Loadbalancer that will be provisioned automatically which is not the recommended way for production scale.
+
+# Coming up
+
+The failover mecanisme for now is relying on tke Kubernetes controllers such as Deployments and ReplicaSets which are  not application aware components therefor Microsoft is working on SQL Always On Availability Groups in AKS (in Preview).
