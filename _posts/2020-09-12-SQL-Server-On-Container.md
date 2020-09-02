@@ -36,6 +36,7 @@ Notice that we mounted a volume where the data will be persisted and that’s ex
 The steps and the concept is described in details in the [official documentation](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15) but again for the sake of simplicity here I am going to speed through the essentials
 
 # Create the secret
+
 ```shell
 kubectl create secret generic mssql --from-literal=SA_PASSWORD="rWpzZx~YL+7mEw<z"
 ```
