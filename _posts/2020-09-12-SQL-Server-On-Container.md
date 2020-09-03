@@ -21,7 +21,7 @@ that’s how Kubernetes and in our case AKS comes in the picture where we will s
 
 ## How to deploy SQL Server in Kubernetes
 
-Before jumping over the AKS and setting up SQL Server pods and service let's check out what is actually needed to run it as a container just locally. By checking out [Docker Hub](https://hub.docker.com/_/microsoft-mssql-server) you can see the different images and the required options to run Sql Server on containers, it as simple as:
+Before jumping over to AKS and setting up SQL Server pods and service let's check out what is actually needed to run it as a container just locally. By checking out [Docker Hub](https://hub.docker.com/_/microsoft-mssql-server) you can see the different images and the required options to run Sql Server on containers, it's as simple as:
 
 ```shell
 docker pull mcr.microsoft.com/mssql/server
@@ -127,8 +127,8 @@ spec:
   type: LoadBalancer
 ```
 
-The secret that has been created will expose our workload/Sql Server in this case to the outside word via a Loadbalancer that will be provisioned automatically which is not the recommended way for production scale.
+The secret that has been created will expose our workload/Sql Server in this case to the outside word via a Loadbalancer that will be provisioned automatically which is by the way not the recommended way for production scale.
 
 # Coming up
 
-The failover mechanism for now is relying on the Kubernetes controllers such as Deployments and ReplicaSets which are  not application aware components therefor Microsoft is working on SQL Always On Availability Groups in AKS (in Preview).
+The failover mechanism for now is relying on the Kubernetes controllers such as Deployments and ReplicaSets which are not application aware components therefor Microsoft is working on SQL Always On Availability Groups in AKS (in Preview).
