@@ -9,14 +9,14 @@ tags: [Service Mesh, Istio]
 comments: true
 time: 7
 ---
-Istio comes with a hand full of features aiming to solve the modern technical problem arising from the shift of monolith application to distributed microservice architecture, In this blog entry we are going to explore **Traffic Management**, one of the core features of a service mesh. For a better understanding a basic knowledge about Istio is required for that you can check this [Introduction](https://ahmedkhamessi.com/2020-09-11-Service-Mesh-101/).
+Istio comes with a hand full of features aiming to solve the modern technical problems arising from the shift of monolith application to distributed microservice architecture, In this blog entry we are going to explore **Traffic Management**, one of the core features of a service mesh. For a better understanding a basic knowledge about Istio is required for that you can check this [Introduction](https://ahmedkhamessi.com/2020-09-11-Service-Mesh-101/).
 
 ## Catchup
 
-Once Istio is configured, It becomes the control plane of the application network, allowing to manage service traffic without remodeling the services themselves. This unleashes new capabilities, especially in regards to deployment strategy such as the Canary and Blue/Green deployments, but also the Circuit Breaker pattern and more.. Those capabilities relies on a couple of Istio custom resources, **Virtual Service** and **Destination Rule**, So let's check out how they look like in action
+Once Istio is configured, It becomes the control plane of the application network, allowing to manage service traffic without remodeling the services themselves. This unleashes new capabilities, especially in regards to deployment strategy such as the Canary and Blue/Green deployments, but also the Circuit Breaker pattern and more.. Those capabilities relies on a couple of Istio custom resources like **Virtual Service** and **Destination Rule**, So let's check out how they look like in action
 ![Catchup Diagram](https://ahmedkhamessi.com/img/servicemesh/trafficmanagement/catchup.jpg)
 
-As we can see in the diagram the service, kubernetes resource, load balance the traffic between all the pods with the label configured in the selected property ignoring the fact that they operate different versions which Istio approach with DestinationRules and Subsets quite easily offering a fine grained traffic control.
+As we can see in the diagram the service, kubernetes resource, load balance the traffic between all the pods with the label configured in the **Selector** property. This highlights how different versions are running side by side which is problematic, Luckely the Istio approach with DestinationRules and Subsets offer a fine grained traffic control. The Virtual Service in this case is aware of all the pods bound to the kubernetes service, however the DestinationRule limit the traffic to a certain subset based on labels.
 
 ```yaml
 #-----------/*Virtual Service*/----------
@@ -51,7 +51,7 @@ spec:
 
 ## Dark launch
 
-The concept is to launch a version of the application that's only accessible to the test team or specific users, It's a great way to gain confidence in new features. Admitting that we have the same Destination Rule created we need to fine tune the Virtual Service to achieve this kind of behaviour.
+The concept is to launch a version of the application that's only accessible to the test team or specific users, It's a great way to gain confidence in new features. Admitting that we have the same DestinationRule created we need to fine tune the Virtual Service to achieve this kind of behaviour.
 
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
@@ -76,8 +76,8 @@ spec:
         subset: v1
 ```
 
-The previous example uses an http header with a user name which is not a production scenario, normally we would have cookies or JWT tokens which we will get into in a later stage of the series.
-But for now, something that I found really handy in my last projects is **fault injection** to test the behaviour of my services when I get a specific HTTP status code. To configure this with Istio it's a simple as adding the fault condition to the virtual service.
+The previous example uses an http header with a user name as matching pattern which is not a production level scenario, normally we would have cookies or JWT tokens which we will get into in a later stage of the series.
+But for now, something that I found really handy in my last projects is **fault injection** to test the behaviour of my services when I get a specific HTTP status code. To configure this with Istio it's a simple as adding the fault condition to the Virtual Service.
 
 ```yaml
 # same as before
@@ -96,15 +96,16 @@ But for now, something that I found really handy in my last projects is **fault 
 ## Blue/Green Deployment
 
 After gaining confidence in the new features by making sure they work as expected and that the system is resilient enough through dark launches, It's time to release it to big public and this is a typical scenario where you want to have a sort of a backup plan in case of things go wrong.
-That's where Blue/Green deployment comes into play by offering a sort of smooth transition between versions and allowing easy rollbacks.
+That's where Blue/Green deployment comes into play by offering a smooth transition between versions and allowing easy rollbacks.
 
 A pre-requirement to understand how perform such a release on the network level only, we need to get familiar with the concept of **Gateway** in Istio. It's a custom resource that 
 > describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.
 
-That's the definition from the official Istio documentation, but let me try to break that down for you with the following diagram
+That's the offcial definition , but let me try to break that down for you with the following diagram
+
 ![Gateway Diagram](https://ahmedkhamessi.com/img/servicemesh/trafficmanagement/gateway.jpg)
 
-//Rewrite -- The takeway is that when users are trying to reach test.myapp.com the gateway is going to redirect the traffic to the virtual service with the same host name and it's actually the subsets bound to virtual services which will deliver the Blue/Green deployment capability as just changing it the traffic will be routed to a different version/set of pod.
+The takeway is that when users are trying to reach test.myapp.com the gateway is going to redirect the traffic to the virtual service with the same host name. Actually the subsets bound to virtual services are the driver of Blue/Green deployment capability as just switching it the traffic will be routed to a different version/set of pod.
 
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
@@ -157,7 +158,7 @@ spec:
 
 ## Canary Deployment
 
-Very similar to the Blue/Green deployment, but instead of being radical and switching a 100% the traffic from version 1 to version 2, This time we are going to make use of the **Weight** property to dose the traffic going to the new release.
+Very similar to the Blue/Green deployment, but instead of being radical and switching a 100% of the traffic from version 1 to version 2, This time we are going to make use of the **Weight** property to dose the traffic going to the new release.
 
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
@@ -187,7 +188,7 @@ spec:
 
 ## Circuit Breaker
 
-This pattern is widely used in a distributed architecture aiming to handle fault scenario that might auto-heal in a certain amount of time and this of course increase the stability and resiliency of the system. One of the great power of Istio, It allows us to implement this pattern only by handling the network level by adding a **Traffic Policy** to the **Destination Rule**.
+This pattern is widely used in a distributed architecture aiming to handle fault scenario that might self heals in a certain amount of time and this of course increase the stability and resiliency of the system. One of the great power of Istio, It allows us to implement this pattern only by handling the network level by adding a **Traffic Policy** to the **Destination Rule**.
 
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
