@@ -58,7 +58,7 @@ az keyvault set-policy -n $keyVaultName --secret-permissions get --spn $clientId
 az keyvault set-policy -n $keyVaultName --certificate-permissions get --spn $clientId
 ```
 
-## Deploy SecretProviderClass and mirror the AKV
+## Deploy SecretProviderClass
 
 ![Architecture diagram](https://ahmedkhamessi.com/img/syncaksakv/architecture.png)
 
