@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Sync Kubernetes Secrets with Azure Keyvault
+title: Secure Kubernetes Secrets with Azure Keyvault
 bigimg:
   - "/img/syncaksakv/vault.jpg": "https://unsplash.com/photos/3a7nrgYSbRE"
 image: https://ahmedkhamessi.com/img/syncaksakv/vault.jpg
