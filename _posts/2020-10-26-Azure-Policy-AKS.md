@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Service Mesh 203 - Azure Policy for AKS
+title: Azure Policy for AKS - Gatekeeper - behind the scenes
 bigimg:
   - "/img/azurepolicy/background.jpg": "https://unsplash.com/photos/oZ61KFUQsus"
 image: https://ahmedkhamessi.com/img/azurepolicy/background.jpg
 share-img: https://ahmedkhamessi.com/img/azurepolicy/background.jpg
-tags: [AKS, Azure, Policy]
+tags: [AKS, Azure, Policy, Gatekeeper, OpenPolicyAgent]
 comments: true
 time: 4
 ---
