@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Azure Policy for AKS
+title: Azure Policy for AKS - Gatekeeper
 bigimg:
   - "/img/azurepolicy/background.jpg": "https://unsplash.com/photos/oZ61KFUQsus"
 image: https://ahmedkhamessi.com/img/azurepolicy/background.jpg
