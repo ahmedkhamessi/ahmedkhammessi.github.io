@@ -186,7 +186,7 @@ Moreover, One of the advantages that Gatekeeper brings out of the box is the **A
 
 By looking at the architecture we recognize that Azure Policy extends Gatekeeper to apply policies on the clusters but in a more centralized way since it allow us to manage and report the compliance state of multiple clusters from one place. By enabling the Azure Policy add-on this what we get:
 -	Deploys policy definitions as **ConstaintTemplate** and **constraint** CRDs
--	Reports **Auditing ** to Azure Policy service
+-	Reports **Auditing** to Azure Policy service
 -	Checks with Azure Policy service for policy assignments.
 
 ![Azure Policy for AKS - Policies](https://ahmedkhamessi.com/img/azurepolicy/policies.png)
