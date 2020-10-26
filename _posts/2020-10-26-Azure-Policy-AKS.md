@@ -10,7 +10,7 @@ comments: true
 time: 4
 ---
 The Pod Security Policy is going to be [deprecated](https://docs.microsoft.com/en-us/azure/aks/use-pod-security-policies) after February 2021, Therefor it's highly recommended to begin the preparation to migrate to Azure Policy for AKS, , offering built-in policies to secure pods and built-in initiatives which map to pod security policies, which work with Open Policy Agent - Gatekeeper underneath. 
-So before jumping directly to Azure Policies let’s keep our options wide open and understand how OPA/Gatekeeper works and then get into Azure Policy specification and how it can help out.
+So before jumping directly to Azure Policies let’s keep our options wide open and understand how OPA/Gatekeeper works and then get into Azure Policy specifications and how it can help out.
 
 ## Admission Controller
 
