@@ -9,11 +9,13 @@ tags: [AKS, Azure, Policy, Gatekeeper, OpenPolicyAgent]
 comments: true
 time: 4
 ---
-The Pod Security Policy is going to be [deprecated](https://docs.microsoft.com/en-us/azure/aks/use-pod-security-policies) after February 2021, Therefor it's highly recommended to begin the preparation to migrate to Azure Policy for AKS which work with Open Policy Agent - Gatekeeper underneath. So before jumping directly to Azure Policies let’s keep our options wide open and understand how OPA/Gatekeeper works and then get into Azure Policy specification and how it can help out.
+The Pod Security Policy is going to be [deprecated](https://docs.microsoft.com/en-us/azure/aks/use-pod-security-policies) after February 2021, Therefor it's highly recommended to begin the preparation to migrate to Azure Policy for AKS, , offering built-in policies to secure pods and built-in initiatives which map to pod security policies, which work with Open Policy Agent - Gatekeeper underneath. 
+So before jumping directly to Azure Policies let’s keep our options wide open and understand how OPA/Gatekeeper works and then get into Azure Policy specification and how it can help out.
 
 ## Admission Controller
 
 We know for a fact that the API server is the front end of the Kubernetes control plane and most importantly, it’s the only component that’s allowed to communicate with Kubernetes store ETCD. The requests comings from the cluster admins/users hitting the api-server go through a multiple step process before persisting the resource.
+
 ![Admission Controller Overview](https://ahmedkhamessi.com/img/azurepolicy/admissioncontroller.png)
 
 Some of the baked in admission controllers to secure running containers
@@ -44,6 +46,8 @@ Pre-requisits
 - VS Code - OPA extension https://github.com/open-policy-agent/vscode-opa
 - Source code https://github.com/ahmedkhammessi/opa
 
+**The deployment manifest - from yaml to json format**
+
 ```json
 {
     "apiVersion": "apps/v1",
@@ -51,7 +55,7 @@ Pre-requisits
     "metadata": {
       "name": "hello-kubernetes",
       "labels": {
-        // "website": "ahmedkhamessi.com", uncomment to get the policy running 
+        // "website": "https://ahmedkhamessi.com", uncomment to get the policy running 
         "app.kubernetes.io/name": "mysql",
         "app.kubernetes.io/version": "5.7.21",
         "app.kubernetes.io/component": "database",
@@ -90,6 +94,8 @@ Pre-requisits
   }
 ```
 
+**The policy**
+
 ```rego
 package main
 
@@ -101,6 +107,7 @@ deny[msg] {
 }
 ```
 **Evaluate the policy**
+
 ![Open Policy Agent Demo](https://ahmedkhamessi.com/img/azurepolicy/opa-demo.png)
 
 ## Gatekeeper
@@ -116,6 +123,7 @@ Remember the Rego policy from the OPA demo well that didn’t look native Kubern
 The following example demonstrate how to deny sharing the host namespace, But more examples are available [here](https://github.com/open-policy-agent/gatekeeper-library)
 
 ```yaml
+#Contraint template definition
 apiVersion: templates.gatekeeper.sh/v1beta1
 kind: ConstraintTemplate
 metadata:
@@ -140,7 +148,9 @@ spec:
             o.spec.hostIPC
         }
 ```
+
 ```yaml
+#Initiating the ConstraintTemplate 
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sPSPHostNamespace
 metadata:
@@ -153,6 +163,7 @@ spec:
 ```
 
 ```yaml
+#Pod with shared host namespace capability
 apiVersion: v1
 kind: Pod
 metadata:
