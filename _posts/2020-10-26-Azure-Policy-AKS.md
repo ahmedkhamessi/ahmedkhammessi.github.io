@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Azure Policy for AKS with OPA Gatekeeper underlay
+title: Azure Policy for AKS - OPA Gatekeeper underlay
 bigimg:
   - "/img/azurepolicy/background.jpg": "https://unsplash.com/photos/oZ61KFUQsus"
 image: https://ahmedkhamessi.com/img/azurepolicy/background.jpg
