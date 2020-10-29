@@ -9,7 +9,7 @@ tags: [AKS, AzureKeyVault, BYOK]
 comments: true
 time: 2
 ---
-Working on Azure Kubernetes Service on an Enterprise scale imposes security first approaches, Therefor encrypting OS and Data disks should be on the top your security checklist for AKS and it's ecosystem. The challenge is actually how to make sure that the cluster users when requesting **PersistentVolumes** through **PersistentVolumeClaims**, AKS is going to provision the disk with a custom encryption key the resides in an Azure Keyvault.
+Working on Azure Kubernetes Service on an Enterprise scale imposes security first approaches, Therefor encrypting OS and Data disks should be on the top of your security checklist for AKS and it's ecosystem. The challenge is actually how to make sure that the cluster users when requesting **PersistentVolumes** through **PersistentVolumeClaims**, AKS is going to provision the disk with a custom encryption key the resides in an Azure Keyvault.
 
 Moreover, Azure Kubernetes Service mutate default storage class feature went GA on the 22 of September, So now AKS customers can now use a different storage class in place of the default storage class to better fit their workload needs. This is actually a good fit in our scenario so we will apply it to the cluster.
 
