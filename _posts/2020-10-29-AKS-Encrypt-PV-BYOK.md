@@ -86,6 +86,8 @@ kubectl patch storageclass $storageClass -p '{"metadata": {"annotations":{"stora
 
 ### The DiskEncryptionSet Configuration
 
+Under the Access Control blade of the DiskEncryptionSet check how the contributor role is assigned to the AKS cluster.
+
 ![The DiskEncryptionSet configuration](https://ahmedkhamessi.com/img/aksencryption/DiskEncryptionSet_Config.png)
 
 ### Storage Class and Data Disk Encryption
