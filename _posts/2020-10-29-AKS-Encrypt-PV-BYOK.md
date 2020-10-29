@@ -94,16 +94,16 @@ Checkout the Mutated StorageClass, as the newly created one is set to default, a
 
 ```shell
 ahmed@Azure:~$ kubectl get sc,pvc
-NAME                                                PROVISIONER                RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
-storageclass.storage.k8s.io/azurefile               kubernetes.io/azure-file   Delete          Immediate           true                   39h
-storageclass.storage.k8s.io/azurefile-premium       kubernetes.io/azure-file   Delete          Immediate           true                   39h
-storageclass.storage.k8s.io/default                 kubernetes.io/azure-disk   Delete          Immediate           true                   39h
-storageclass.storage.k8s.io/encryptedsc (default)   kubernetes.io/azure-disk   Delete          Immediate           true                   111m
-storageclass.storage.k8s.io/managed-premium         kubernetes.io/azure-disk   Delete          Immediate           true                   39h
+NAME                                                PROVISIONER                RECLAIMPOLICY   VOLUMEBINDINGMODE   
+storageclass.storage.k8s.io/azurefile               kubernetes.io/azure-file   Delete          Immediate                   
+storageclass.storage.k8s.io/azurefile-premium       kubernetes.io/azure-file   Delete          Immediate 
+storageclass.storage.k8s.io/default                 kubernetes.io/azure-disk   Delete          Immediate            
+storageclass.storage.k8s.io/encryptedsc (default)   kubernetes.io/azure-disk   Delete          Immediate                   
+storageclass.storage.k8s.io/managed-premium         kubernetes.io/azure-disk   Delete          Immediate                      
 
-NAME                              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-persistentvolumeclaim/myclaim     Bound    pvc-cc6eb71f-f2ac-4925-9a29-3e71678e1d27   8Gi        RWO            encryptedsc    95m
-persistentvolumeclaim/testclaim   Bound    pvc-4fc72059-df07-4a1d-b12a-3facce852ee9   8Gi        RWO            default        123m
+NAME                              STATUS   VOLUME                                     CAPACITY   STORAGECLASS   
+persistentvolumeclaim/myclaim     Bound    pvc-cc6eb71f-f2ac-4925-9a29-3e71678e1d27   8Gi        encryptedsc    
+persistentvolumeclaim/testclaim   Bound    pvc-4fc72059-df07-4a1d-b12a-3facce852ee9   8Gi        default       
 ```
 Jump into the portal and check out the attached disk and it's encryption setting
 
