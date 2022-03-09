@@ -10,7 +10,7 @@ comments: true
 time: 5
 ---
 
-What is more important than actually getting the certificate is to have a sort of a mind map or a clear vision over the Kubernetes core security concepts and the different tools that you may use to prevent or to mitigate attacks that could take get through one of the 4 main attack surfaces.
+What is more important than actually getting the Kubernetes security certificate CKS is to have a sort of a mind map or a clear vision over the Kubernetes core security concepts and the different tools that you may use to prevent or mitigate attacks that could get through one of the 4 main attack surfaces.
 
 ![cloud native security 4 c's](https://ahmedkhamessi.com/img/cks/cloudnativesecurity-4c.png)
 
@@ -18,7 +18,7 @@ That's already a great starting point to this post, what are actually the layers
 
 ## Cloud
 
-If the cloud layer is vulnerable or configured in a vulnerable way there is no guarantee that the components built upon that will be secure. Thus the first checkpoint is to check out security fundamentals documented by the cloud provider of your choice, as an example this is the [Azure security overview](https://docs.microsoft.com/en-us/azure/security/fundamentals/overview) that goes over the built-in capabilities in the core functional areas
+If the cloud layer is vulnerable or configured in a vulnerable way there is no guarantee that the components built upon it will be secure. Thus the first checkpoint is to check out security fundamentals documented by the cloud provider of your choice, as an example this is the [Azure security overview](https://docs.microsoft.com/en-us/azure/security/fundamentals/overview) that goes over the built-in capabilities in the core functional areas
 
 - Operations
 - Applications
@@ -35,7 +35,7 @@ The second layer of security concerns the cluster setup itself, There are two ma
  
 ### Securing the cluster components
 
-This is your first line of defense, as a poor configuration and a loose access to the main components of your cluster like the kubernetes API or kubelet may put in danger your setup on both level malicious and accidental. Therefor an Authentication (who can access) and an Authorization concept must be considered before the implementation phase. Checkout the [Access and identity options](https://docs.microsoft.com/en-us/azure/aks/concepts-identity#azure-role-based-access-control) for Azure Kubernetes Service which covers how to enhance the cluster security with the Azure AD integration and lays out the role based access control RBAC concept on both Kubernetes and Azure levels.
+This is your first line of defense, as a poor configuration and a loose access to the main components of your cluster like the kubernetes API or kubelet may put in danger your setup on both malicious and accidental levels. Therefor an Authentication (who can access) and an Authorization (what can the User/Admin/ServiceAccount do) concept must be considered before the implementation phase. Checkout the [Access and identity options](https://docs.microsoft.com/en-us/azure/aks/concepts-identity#azure-role-based-access-control) for Azure Kubernetes Service which covers how to enhance the cluster security with the Azure AD integration and lays out the role based access control RBAC concept on both Kubernetes and Azure levels.
 As shown below in the flow diagram  you can manage Azure AD-integrated Kubernetes cluster resource permissions and assignments using Azure role definition and role assignments.
 
 ![Azure RBAC for Kubernetes Authorization](https://ahmedkhamessi.com/img/cks/azure-rbac-k8s-authz-flow.png)
