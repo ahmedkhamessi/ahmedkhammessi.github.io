@@ -20,12 +20,12 @@ That's already a great starting point to this post, what are actually the layers
 
 If the cloud layer is vulnerable or configured in a vulnerable way there is no guarantee that the components built upon that will be secure. Thus the first checkpoint is to check out security fundamentals documented by the cloud provider of your choice, as an example this is the [Azure security overview](https://docs.microsoft.com/en-us/azure/security/fundamentals/overview) that goes over the built-in capabilities in the core functional areas
 
-	- Operations
-	- Applications
-	- Storage
-	- Networking
-	- Compute
-	- Identity and access management
+- Operations
+- Applications
+- Storage
+- Networking
+- Compute
+- Identity and access management
 
 There is also the security baseline for the Kubernetes service which applies guidance from security benchmarks and provide recommendations on how to secure the cloud solution. Check out the [Full Azure Kubernetes Service security baseline mapping](azure-kubernetes-service-security-baseline-v1.1.xlsx (live.com))
 
@@ -42,11 +42,11 @@ As shown below in the flow diagram  you can manage Azure AD-integrated Kubernete
 
 ### Securing the apps running in the cluster
 
-	○ Application secrets management
-	○ Pod security standards
-	○ Quality of Service for Pods
-	○ Network Policies
-	○ TLS for k8s Ingress
+- Application secrets management
+- Pod security standards
+- Quality of Service for Pods
+- Network Policies
+- TLS for k8s Ingress
 
 For the general recommendations in regards with the cluster overall security, please check out the [official documentation](https://kubernetes.io/docs/tasks/administer-cluster/securing-a-cluster/)
 
