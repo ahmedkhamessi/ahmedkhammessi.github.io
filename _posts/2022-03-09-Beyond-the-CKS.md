@@ -27,7 +27,7 @@ If the cloud layer is vulnerable or configured in a vulnerable way there is no g
 - Compute
 - Identity and access management
 
-There is also the security baseline for the Kubernetes service which applies guidance from security benchmarks and provide recommendations on how to secure the cloud solution. Check out the [Full Azure Kubernetes Service security baseline mapping](azure-kubernetes-service-security-baseline-v1.1.xlsx (live.com))
+There is also the security baseline for the Kubernetes service which applies guidance from security benchmarks and provide recommendations on how to secure the cloud solution. Check out the [Full Azure Kubernetes Service security baseline mapping](https://github.com/MicrosoftDocs/SecurityBenchmarks/raw/master/Azure%20Offer%20Security%20Baselines/1.1/azure-kubernetes-service-security-baseline-v1.1.xlsx)
 
 ## Cluster
 
