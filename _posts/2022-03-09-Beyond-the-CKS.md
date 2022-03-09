@@ -2,9 +2,9 @@
 layout: post
 title: Beyond the CKS
 bigimg:
-  - "/img/cks.jpg": "https://unsplash.com/photos/mT7lXZPjk7U"
-image: https://ahmedkhamessi.com/img/cks.jpg
-share-img: https://ahmedkhamessi.com/img/cks.jpg
+  - "/img/cks/cks.jpg": "https://unsplash.com/photos/mT7lXZPjk7U"
+image: https://ahmedkhamessi.com/img/cks/cks.jpg
+share-img: https://ahmedkhamessi.com/img/cks/cks.jpg
 tags: [AKS, K8s, kubernetes, Security, CKS]
 comments: true
 time: 5
