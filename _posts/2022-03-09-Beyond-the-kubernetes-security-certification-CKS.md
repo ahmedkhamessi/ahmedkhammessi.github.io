@@ -77,5 +77,5 @@ The application code is in general a topic doesn't concern the kubernetes enviro
 
 # Wrapup
 
-In general it's a good practice to have a blick on the big picture especially when it comes to complexe system such as Kubernetes where you can get lost in details. I will be digging deaper to share pieces of my preparation and my work on the security aspect not only to get the certificate but as a general practice. Topic that i will be covering will be clusterized by the CKS [domains and competencies](https://training.linuxfoundation.org/certification/certified-kubernetes-security-specialist/).
+In general it's a good practice to have a blick on the big picture especially when it comes to complexe system such as Kubernetes where you can get lost in details. I will be digging deeper to share pieces of my preparation and my work on the security aspect not only to get the certificate but as a general practice. Topic that i will be covering will be clusterized by the CKS [domains and competencies](https://training.linuxfoundation.org/certification/certified-kubernetes-security-specialist/).
 
