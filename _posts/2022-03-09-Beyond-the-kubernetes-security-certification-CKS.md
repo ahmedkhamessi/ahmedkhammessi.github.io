@@ -35,7 +35,9 @@ The second layer of security concerns the cluster setup itself, There are two ma
  
 ### Securing the cluster components
 
-This is your first line of defense, as a poor configuration and a loose access to the main components of your cluster like the kubernetes API or kubelet may put in danger your setup on both malicious and accidental levels. Therefor an Authentication (who can access) and an Authorization (what can the User/Admin/ServiceAccount do) concept must be considered before the implementation phase. Checkout the [Access and identity options](https://docs.microsoft.com/en-us/azure/aks/concepts-identity#azure-role-based-access-control) for Azure Kubernetes Service which covers how to enhance the cluster security with the Azure AD integration and lays out the role based access control RBAC concept on both Kubernetes and Azure levels.
+This is your first line of defense, as a poor configuration and a loose access to the main components of your cluster like the kubernetes API or kubelet may put in danger your setup on both malicious and accidental levels. 
+
+Therefor an Authentication (who can access) and an Authorization (what can the User/Admin/ServiceAccount do) concept must be considered before the implementation phase. Checkout the [Access and identity options](https://docs.microsoft.com/en-us/azure/aks/concepts-identity#azure-role-based-access-control) for Azure Kubernetes Service which covers how to enhance the cluster security with the Azure AD integration and lays out the role based access control RBAC concept on both Kubernetes and Azure levels.
 
 As shown below in the flow diagram  you can manage Azure AD-integrated Kubernetes cluster resource permissions and assignments using Azure role definition and role assignments.
 
