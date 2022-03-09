@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Beyond the CKS
+title: Beyond the Kubernetes security certification CKS
 bigimg:
   - "/img/cks/cks.jpg": "https://unsplash.com/photos/mT7lXZPjk7U"
 image: https://ahmedkhamessi.com/img/cks/cks.jpg
