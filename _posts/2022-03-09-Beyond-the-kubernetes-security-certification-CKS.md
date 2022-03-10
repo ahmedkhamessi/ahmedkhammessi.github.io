@@ -7,7 +7,7 @@ image: https://ahmedkhamessi.com/img/cks/cks.jpg
 share-img: https://ahmedkhamessi.com/img/cks/cks.jpg
 tags: [AKS, K8s, kubernetes, Security, CKS]
 comments: true
-time: 5
+time: 3
 ---
 
 What is more important than actually getting the Kubernetes security certificate CKS is to have a sort of a mind map or a clear vision over the Kubernetes core security concepts and the different tools that you may use to prevent or mitigate attacks that could get through one of the 4 main attack surfaces.
